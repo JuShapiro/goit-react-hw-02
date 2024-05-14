@@ -1,6 +1,8 @@
 import { useState } from "react";
 import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
+import Notification from "./components/Notification/Notification";
+
 import "modern-normalize";
 import "./App.css";
 
@@ -16,6 +18,7 @@ const App = () => {
       [feedbackType]: feedbacks[feedbackType] + 1,
     });
   };
+  const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
   return (
     <div>
       <h2>Sip Happens Café</h2>
@@ -26,7 +29,11 @@ const App = () => {
 
       <Options updateFeedback={updateFeedback} />
 
-      <Feedback feedbacks={feedbacks} />
+      {totalFeedback > 0 ? (
+        <Feedback feedbacks={feedbacks} />
+      ) : (
+        <Notification />
+      )}
     </div>
   );
 };
