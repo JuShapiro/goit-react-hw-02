@@ -19,6 +19,7 @@ const App = () => {
     });
   };
   const totalFeedback = feedbacks.good + feedbacks.neutral + feedbacks.bad;
+  const positiveFeedback = Math.round((feedbacks.good / totalFeedback) * 100);
   return (
     <div>
       <h2>Sip Happens Café</h2>
@@ -34,7 +35,11 @@ const App = () => {
       />
 
       {totalFeedback > 0 ? (
-        <Feedback feedbacks={feedbacks} />
+        <Feedback
+          feedbacks={feedbacks}
+          totalFeedback={totalFeedback}
+          positiveFeedback={positiveFeedback}
+        />
       ) : (
         <Notification />
       )}
