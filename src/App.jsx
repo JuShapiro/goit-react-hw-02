@@ -27,7 +27,11 @@ const App = () => {
         options below.
       </p>
 
-      <Options updateFeedback={updateFeedback} />
+      <Options
+        updateFeedback={updateFeedback}
+        setFeedbacks={setFeedback}
+        totalFeedback={totalFeedback}
+      />
 
       {totalFeedback > 0 ? (
         <Feedback feedbacks={feedbacks} />
