@@ -1,7 +1,5 @@
 import css from "./Options.module.css";
-import { FcLike } from "react-icons/fc";
-import { FcLikePlaceholder } from "react-icons/fc";
-import { FcDislike } from "react-icons/fc";
+import { FcLike, FcLikePlaceholder, FcDislike } from "react-icons/fc";
 import { RxReset } from "react-icons/rx";
 
 const Options = ({ updateFeedback, setFeedbacks, totalFeedback }) => {
