@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Options from "./components/Options/Options";
 import Feedback from "./components/Feedback/Feedback";
 import Notification from "./components/Notification/Notification";
@@ -7,11 +7,21 @@ import "modern-normalize";
 import "./App.css";
 
 const App = () => {
-  const [feedbacks, setFeedback] = useState({
-    good: 0,
-    neutral: 0,
-    bad: 0,
+  const [feedbacks, setFeedback] = useState(() => {
+    const savedFeedbacks = window.localStorage.getItem("saved-feedbacks");
+    if (savedFeedbacks !== null) {
+      return JSON.parse(savedFeedbacks);
+    }
+    return {
+      good: 0,
+      neutral: 0,
+      bad: 0,
+    };
   });
+
+  useEffect(() => {
+    window.localStorage.setItem("saved-feedbacks", JSON.stringify(feedbacks));
+  }, [feedbacks]);
   const updateFeedback = (feedbackType) => {
     setFeedback({
       ...feedbacks,
